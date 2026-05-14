@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,15 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className={cn(
-        "h-full",
-        "antialiased",
-        "font-sans",
-        inter.variable,
-      )}
-      lang="en"
-    >
+    <html className={cn("h-full", "antialiased", inter.className)} lang="en">
       <body className="flex flex-col min-h-full">{children}</body>
     </html>
   );
