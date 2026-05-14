@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -18,8 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={cn("h-full", "antialiased", inter.className)} lang="en">
-      <body className="flex flex-col min-h-full">{children}</body>
-    </html>
+    <ClerkProvider afterSignOutUrl="/">
+      <html className={cn("h-full", "antialiased", inter.className)} lang="en">
+        <body className="flex flex-col min-h-full">{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
