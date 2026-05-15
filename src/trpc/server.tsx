@@ -1,14 +1,14 @@
 import { cache } from "react";
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { createTRPCClient, httpLink } from "@trpc/client";
+// import { createTRPCClient, httpLink } from "@trpc/client";
 import {
   createTRPCOptionsProxy,
   type ResolverDef,
   type TRPCQueryOptions,
 } from "@trpc/tanstack-react-query";
 
-import type { AppRouter } from "./routers/_app";
+// import type { AppRouter } from "./routers/_app";
 import { appRouter } from "./routers/_app";
 import { createTRPCContext } from "./init";
 import { makeQueryClient } from "./query-client";
@@ -23,12 +23,12 @@ export const trpc = createTRPCOptionsProxy({
   queryClient: getQueryClient,
 });
 // If your router is on a separate server, pass a client:
-createTRPCOptionsProxy<AppRouter>({
-  client: createTRPCClient<AppRouter>({
-    links: [httpLink({ url: "..." })],
-  }),
-  queryClient: getQueryClient,
-});
+// createTRPCOptionsProxy<AppRouter>({
+//   client: createTRPCClient<AppRouter>({
+//     links: [httpLink({ url: "..." })],
+//   }),
+//   queryClient: getQueryClient,
+// });
 
 export const caller = appRouter.createCaller(createTRPCContext);
 
