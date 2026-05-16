@@ -1,5 +1,5 @@
 import { DEFAULT_LIMIT } from "@/constants";
-import { VideosSection } from "@/modules/studio/ui/sections/videos-section";
+import { StudioView } from "@/modules/studio/ui/views/studio-view";
 import { HydrateClient, prefetch, trpc } from "@/trpc/server";
 
 const StudioPage = async () => {
@@ -12,7 +12,7 @@ const StudioPage = async () => {
 
   return (
     <HydrateClient>
-      <VideosSection />
+      <StudioView />
     </HydrateClient>
   );
 };
