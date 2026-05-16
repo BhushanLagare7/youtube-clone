@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { TRPCReactProvider } from "@/trpc/client";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
       <html className={cn("h-full", "antialiased", inter.className)} lang="en">
         <body className="flex flex-col min-h-full">
           <TRPCReactProvider>{children}</TRPCReactProvider>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
