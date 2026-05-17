@@ -4,8 +4,10 @@ import { LoaderIcon, PlusIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { ResponsiveModal } from "@/components/responsive-modal";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LIMIT } from "@/constants";
+import { StudioUploader } from "@/modules/studio/ui/components/studio-uploader";
 import { useTRPC } from "@/trpc/client";
 
 export const StudioUploadModal = () => {
@@ -28,17 +30,30 @@ export const StudioUploadModal = () => {
   );
 
   return (
-    <Button
-      disabled={create.isPending}
-      variant="secondary"
-      onClick={() => create.mutate()}
-    >
-      {create.isPending ? (
-        <LoaderIcon className="animate-spin" />
-      ) : (
-        <PlusIcon />
-      )}
-      Create
-    </Button>
+    <>
+      <ResponsiveModal
+        open={!!create.data?.url}
+        title="Upload a video"
+        onOpenChange={() => create.reset()}
+      >
+        {create.data?.url ? (
+          <StudioUploader endpoint={create.data.url} onSuccess={() => {}} />
+        ) : (
+          <LoaderIcon />
+        )}
+      </ResponsiveModal>
+      <Button
+        disabled={create.isPending}
+        variant="secondary"
+        onClick={() => create.mutate()}
+      >
+        {create.isPending ? (
+          <LoaderIcon className="animate-spin" />
+        ) : (
+          <PlusIcon />
+        )}
+        Create
+      </Button>
+    </>
   );
 };
